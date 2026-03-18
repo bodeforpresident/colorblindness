@@ -1,9 +1,20 @@
 #include <iostream>
-#include <cmath>
 using namespace std;
+
+/*
+Things to do:
+
+Finish all punnett squares
+Finish genotypes
+Finish phenotypes
+Loop!
+
+*/
+
 
 // Function declarations
 void input(bool& nf, bool& cf, bool& cbf, bool& nm, bool& cm, bool& cbm, int& gen, char& keyIn);
+void squares(bool& nf, bool& cf, bool& cbf, bool& nm, bool& cm, bool& cbm);
 
 int main()
 {
@@ -13,7 +24,8 @@ int main()
     int y = 1;
     char keyIn;
     
-    input(nf, cf, cbf, nm, cm, cbm, gen, keyIn);
+    input(nf, cf, cbf, nm, cm, cbm, gen, keyIn); // Input function
+    squares(nf, cf, cbf, nm, cm, cbm);
     
 }
 
@@ -73,5 +85,48 @@ void input(bool& nf, bool& cf, bool& cbf, bool& nm, bool& cm, bool& cbm, int& ge
                 nm = false;
                 cm = false;
             };
+        }
+}
+void squares(bool& nf, bool& cf, bool& cbf, bool& nm, bool& cm, bool& cbm) {
+    cout << "This is your punnett square:\n\n\n";
+        if (nf == 1) {
+            if (nm == 1) {
+                cout << "=============================================\n";
+                cout << "| Not colorblind girl | Not colorblind girl |\n";
+                cout << "=============================================\n";
+                cout << "| Not colorblind boy  | Not colorblind boy  |\n";
+                cout << "=============================================\n\n";
+                cout << "0% chance of having a colorblind girl\n0% chance of having a colorblind boy\n";
+                cout << "0% chance of having a carrier for colorblindness";
+            }
+            if (cm == 1) {
+                cout << "=============================================\n";
+                cout << "| Carrier girl        | Carrier girl        |\n";
+                cout << "=============================================\n";
+                cout << "| Not colorblind boy  | Not colorblind boy  |\n";
+                cout << "=============================================\n\n";
+                cout << "0% chance of having a colorblind girl\n0% chance of having a colorblind boy\n";
+                cout << "50% chance of having a carrier for colorblindness";                
+            }
+        }
+        if (cf == 1) {
+            if (nm == 1) {
+                cout << "=============================================\n";
+                cout << "| Not colorblind girl | Carrier girl        |\n";
+                cout << "=============================================\n";
+                cout << "| Not colorblind boy  | Colorblind boy      |\n";
+                cout << "=============================================\n\n";
+                cout << "0% chance of having a colorblind girl\n25% chance of having a colorblind boy\n";
+                cout << "25% chance of having a carrier for colorblindness";
+            }
+            if (cm == 1) {
+                cout << "=============================================\n";
+                cout << "| Carrier girl        | Colorblind girl     |\n";
+                cout << "=============================================\n";
+                cout << "| Not colorblind boy  | Colorblind boy      |\n";
+                cout << "=============================================\n\n";
+                cout << "0% chance of having a colorblind girl\n0% chance of having a colorblind boy\n";
+                cout << "0% chance of having a carrier for colorblindness";                
+            }
         }
 }
