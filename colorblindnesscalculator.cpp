@@ -1,132 +1,92 @@
 #include <iostream>
 using namespace std;
 
-/*
-Things to do:
+// Declare functions
+void inputs(int& mother, int& father); // Input function
+void squares(int& mother, int& father, int& loop, char& keyIn); // Output function
 
-Finish all punnett squares
-Finish genotypes
-Finish phenotypes
-Loop!
-
-*/
-
-
-// Function declarations
-void input(bool& nf, bool& cf, bool& cbf, bool& nm, bool& cm, bool& cbm, int& gen, char& keyIn);
-void squares(bool& nf, bool& cf, bool& cbf, bool& nm, bool& cm, bool& cbm);
-
-int main()
-{
-    bool nf, cf, cbf, nm, cm, cbm;
-    int gen;
-    int x = 5000000;
-    int y = 1;
+int main() {
+    // Declare functions
+    int mother, father, loop;
     char keyIn;
     
-    input(nf, cf, cbf, nm, cm, cbm, gen, keyIn); // Input function
-    squares(nf, cf, cbf, nm, cm, cbm);
-    
+    // Run functions
+    do {
+    inputs(mother, father);
+    squares(mother, father, loop, keyIn);
+    } while (loop == 1);
 }
 
-// Function definitions
-void input(bool& nf, bool& cf, bool& cbf, bool& nm, bool& cm, bool& cbm, int& gen, char& keyIn) {
-    cout << "=============================================\n";
-    cout << "| Welcome to the colorblindness calculator! |\n";
-    cout << "|===========================================|\n";
-    cout << "| To use: Follow all instructions to get    |\n";
-    cout << "| all probabilities of colorblindness in a  |\n";
-    cout << "| punnett square and percentages.           |\n";
-    cout << "=============================================\n\n";
+// Define functions
+void inputs(int& mother, int& father) {
+    cout << "Welcome to the Colorblind Calculator!\n";
+    cout << "To use: Follow the instructions that appear on screen.\n\n";
     
-    // Female input
-    cout << "If the mother has no colorblindness, type N. If the mother is a carrier for colorblindness, type R. If the mother has colorblindness, type C.\n";
-    cin >> keyIn;
-        if (keyIn != 'n' and keyIn != 'N' and keyIn != 'r' and keyIn != 'R' and keyIn != 'c' and keyIn != 'C') do {
-            cout << "Hey yo Hey yo Hey yo Hey yo Hey yo "; // Actually do this later don't leave this!!!!
-        } while (-100 < 2);
-        else {
-            if (keyIn = 'n') {
-                nf = true;
-                cf = false;
-                cbf = false;
-            };
-            if (keyIn = 'r') {
-                cf = true;
-                nf = false;
-                cbf = false;
-            };
-            if (keyIn = 'c') {
-                cbf = true;
-                nf = false;
-                cf = false;
-            };
-        }
-        
-    // Male input
-    cout << "If the father has no colorblindness, type N. If the father is a carrier for colorblindness, type R. If the father has colorblindness, type C.\n";
-    cin >> keyIn;
-        if (keyIn != 'n' and keyIn != 'N' and keyIn != 'r' and keyIn != 'R' and keyIn != 'c' and keyIn != 'C') do {
-            cout << "Hey yo Hey yo Hey yo Hey yo Hey yo "; // Actually do this later don't leave this!!!!
-        } while (-100 < 2);
-        else {
-            if (keyIn = 'n') {
-                nm = true;
-                cm = false;
-                cbm = false;
-            };
-            if (keyIn = 'r') {
-                cm = true;
-                nm = false;
-                cbm = false;
-            };
-            if (keyIn = 'c') {
-                cbm = true;
-                nm = false;
-                cm = false;
-            };
-        }
+    // Input Section, Mother
+    cout << "If the mother is not colorblind, enter zero.\nIf the mother is colorblind, enter one.\nIf the mother is a carrier for colorblindness, enter two.\n";
+    cin >> mother;
+    if (mother != 0 || mother != 1 || mother != 2) {
+        cout << "Please enter zero, one, or two\n";
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cin >> mother;
+    }
+    
+    // Input Section, Father
+    cout << "If the father is not colorblind, enter zero.\nIf the father is colorblind, enter one.\n";
+    cin >> father;
 }
-void squares(bool& nf, bool& cf, bool& cbf, bool& nm, bool& cm, bool& cbm) {
-    cout << "This is your punnett square:\n\n\n";
-        if (nf == 1) {
-            if (nm == 1) {
-                cout << "=============================================\n";
-                cout << "| Not colorblind girl | Not colorblind girl |\n";
-                cout << "=============================================\n";
-                cout << "| Not colorblind boy  | Not colorblind boy  |\n";
-                cout << "=============================================\n\n";
-                cout << "0% chance of having a colorblind girl\n0% chance of having a colorblind boy\n";
-                cout << "0% chance of having a carrier for colorblindness";
-            }
-            if (cm == 1) {
-                cout << "=============================================\n";
-                cout << "| Carrier girl        | Carrier girl        |\n";
-                cout << "=============================================\n";
-                cout << "| Not colorblind boy  | Not colorblind boy  |\n";
-                cout << "=============================================\n\n";
-                cout << "0% chance of having a colorblind girl\n0% chance of having a colorblind boy\n";
-                cout << "50% chance of having a carrier for colorblindness";                
-            }
-        }
-        if (cf == 1) {
-            if (nm == 1) {
-                cout << "=============================================\n";
-                cout << "| Not colorblind girl | Carrier girl        |\n";
-                cout << "=============================================\n";
-                cout << "| Not colorblind boy  | Colorblind boy      |\n";
-                cout << "=============================================\n\n";
-                cout << "0% chance of having a colorblind girl\n25% chance of having a colorblind boy\n";
-                cout << "25% chance of having a carrier for colorblindness";
-            }
-            if (cm == 1) {
-                cout << "=============================================\n";
-                cout << "| Carrier girl        | Colorblind girl     |\n";
-                cout << "=============================================\n";
-                cout << "| Not colorblind boy  | Colorblind boy      |\n";
-                cout << "=============================================\n\n";
-                cout << "0% chance of having a colorblind girl\n0% chance of having a colorblind boy\n";
-                cout << "0% chance of having a carrier for colorblindness";                
-            }
-        }
+void squares(int& mother, int& father, int& loop, char& keyIn) {
+    cout << "This is your punnet square:\n\n";
+    if (mother == 0 & father == 0) { // First punnett square
+        cout << "    |   XB    |    XB   |\n";
+        cout << "=========================\n";
+        cout << "XB  |XBXB     |XBXB     |\n";
+        cout << "=========================\n";
+        cout << "Y   |XBY      |XBY      |\n";
+        cout << "=========================\n";
+    } else if (mother == 1 & father == 0) { // Second punnett square
+        cout << "    |   Xb    |    Xb   |\n";
+        cout << "=========================\n";
+        cout << "XB  |XBXb     |XBXb     |\n";
+        cout << "=========================\n";
+        cout << "Y   |XbY      |XbY      |\n";
+        cout << "=========================\n";
+    } else if (mother == 2 & father == 0) { // Third punnett square
+        cout << "    |   XB    |    Xb   |\n";
+        cout << "=========================\n";
+        cout << "XB  |XBXB     |XBXb     |\n";
+        cout << "=========================\n";
+        cout << "Y   |XBY      |XbY      |\n";
+        cout << "=========================\n";    
+    } else if (mother == 0 & father == 1) { // Fourth punnett square
+        cout << "    |   XB    |    XB   |\n";
+        cout << "=========================\n";
+        cout << "Xb  |XBXb     |XBXb     |\n";
+        cout << "=========================\n";
+        cout << "Y   |XBY      |XBY      |\n";
+        cout << "=========================\n";        
+    } else if (mother == 1 & father == 1) { // Fifth punnett square
+        cout << "    |   Xb    |    Xb   |\n";
+        cout << "=========================\n";
+        cout << "Xb  |XbXb     |XbXb     |\n";
+        cout << "=========================\n";
+        cout << "Y   |XbY      |XbY      |\n";
+        cout << "=========================\n";
+    } else if (mother == 2 & father == 1) { // Sixth punnett square
+        cout << "    |   XB    |    Xb   |\n";
+        cout << "=========================\n";
+        cout << "Xb  |XBXb     |XbXb     |\n";
+        cout << "=========================\n";
+        cout << "Y   |XBY      |XbY      |\n";
+        cout << "=========================\n";
+    }
+    cout << "Press Y to run the program again. Press any other key to quit.\n";
+    cin >> keyIn;
+    if (keyIn == 'y') {
+        loop = 1;
+    } else {
+        loop = 0;
+        cout << "Goodbye!";
+    }
 }
